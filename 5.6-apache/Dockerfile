@@ -1,4 +1,4 @@
-FROM php:7.3-apache
+FROM php:5.6-apache
 
 # persistent dependencies
 RUN set -eux; \
@@ -124,4 +124,4 @@ COPY upload.ini $PHP_INI_DIR/conf.d/
 WORKDIR /var/www/html
 
 # Install composer
-# RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

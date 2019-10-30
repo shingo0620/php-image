@@ -59,8 +59,10 @@ RUN set -ex; \
 		apk add --virtual .joomla-phpext-rundeps $runDeps; \
 		apk del .build-deps
 
+COPY upload.ini $PHP_INI_DIR/conf.d/
+
 # Set working directory
 WORKDIR /var/www/html
 
 # Install composer
-RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
