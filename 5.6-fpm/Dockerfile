@@ -44,10 +44,9 @@ RUN set -ex; \
 			ldap \
 		; \
 		pecl install imagick-3.4.4; \
-		pecl install APCu-5.1.17; \
-		pecl install memcached-3.1.4; \
+		pecl install memcached-2.2.0; \
 		pecl install redis-4.3.0; \
-		docker-php-ext-enable imagick apcu memcached redis; \
+		docker-php-ext-enable imagick memcached redis; \
 		\
 		runDeps="$( \
 			scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
