@@ -1,4 +1,4 @@
-FROM php:5.6-fpm-alpine
+FROM php:7.4-fpm-alpine
 
 # persistent dependencies
 RUN apk add --no-cache \
@@ -22,13 +22,11 @@ RUN set -ex; \
 			openldap-dev \
 			pcre-dev \
 			postgresql-dev \
-			libmcrypt-dev \
 		; \
 		\
 		docker-php-ext-configure gd \
-			--with-freetype-dir=/usr \
-			--with-jpeg-dir=/usr \
-			--with-png-dir=/usr \
+			--with-freetype \
+			--with-jpeg \
 		; \
 		docker-php-ext-configure ldap; \
 		docker-php-ext-install -j "$(nproc)" \
@@ -43,12 +41,12 @@ RUN set -ex; \
 			bz2 \
 			zip \
 			ldap \
-			mcrypt \
 		; \
 		pecl install imagick-3.4.4; \
-		pecl install memcached-2.2.0; \
+		pecl install APCu-5.1.17; \
+		pecl install memcached-3.1.4; \
 		pecl install redis-4.3.0; \
-		docker-php-ext-enable imagick memcached redis; \
+		docker-php-ext-enable imagick apcu memcached redis; \
 		\
 		runDeps="$( \
 			scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
