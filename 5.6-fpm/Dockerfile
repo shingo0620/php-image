@@ -62,6 +62,9 @@ RUN set -ex; \
 
 COPY upload.ini $PHP_INI_DIR/conf.d/
 
+ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS="1"
+COPY opcache.ini $PHP_INI_DIR/conf.d/
+
 # Set working directory
 WORKDIR /var/www/html
 
