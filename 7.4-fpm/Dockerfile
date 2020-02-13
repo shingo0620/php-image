@@ -61,6 +61,7 @@ RUN set -ex; \
 COPY upload.ini $PHP_INI_DIR/conf.d/
 
 ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS="1"
+ENV PHP_OPCACHE_ENABLE="0"
 COPY opcache.ini $PHP_INI_DIR/conf.d/
 
 # Set working directory
